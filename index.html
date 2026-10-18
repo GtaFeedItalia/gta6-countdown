@@ -1,256 +1,247 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GTA VI Countdown</title>
+<meta name="theme-color" content="#170b29">
+<title>GTA Feed Italia | GTA VI Countdown</title>
+<meta name="description" content="GTA Feed Italia: countdown GTA VI e community italiana.">
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,Helvetica,sans-serif;
-}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--pink:#ff45b5;--cyan:#58fff1;--dark:#170b29}
+html{scroll-behavior:smooth}
+body{font-family:Arial,sans-serif;background:var(--dark);color:#fff;overflow-x:hidden}
 
-body{
-height:100vh;
-overflow:hidden;
-display:flex;
-justify-content:center;
-align-items:center;
-background:#070b1a;
-color:white;
-position:relative;
+.hero{
+ min-height:100vh;min-height:100svh;position:relative;overflow:hidden;
+ display:flex;flex-direction:column;isolation:isolate;
+ background:linear-gradient(180deg,transparent 35%,#170b29 100%),
+ linear-gradient(140deg,#271047,#a92f85,#ff795e,#ffbd77)
 }
+.sun{
+ position:absolute;z-index:-1;top:16%;left:50%;transform:translateX(-50%);
+ width:min(65vw,520px);aspect-ratio:1;border-radius:50%;
+ background:linear-gradient(#fff2a4,#ffad67 40%,#ff4fa3 75%,#8d278c);
+ box-shadow:0 0 100px #ff4fa355;animation:glow 4s infinite alternate
+}
+.sun:after{
+ content:"";position:absolute;inset:55% 0 0;
+ background:repeating-linear-gradient(to bottom,transparent 0 9px,#30103d 10px 15px)
+}
+.grid{
+ position:absolute;z-index:0;bottom:-5%;left:-40%;width:180%;height:35%;
+ background-image:linear-gradient(#ff45b555 1px,transparent 1px),
+ linear-gradient(90deg,#ff45b555 1px,transparent 1px);
+ background-size:45px 30px;transform:perspective(180px) rotateX(48deg);
+ animation:gridmove 4s linear infinite
+}
+.palm{
+ position:absolute;z-index:1;bottom:5%;font-size:clamp(90px,17vw,220px);
+ filter:drop-shadow(0 0 15px #10051e);animation:sway 5s ease-in-out infinite;
+ pointer-events:none
+}
+.left{left:-3%}.right{right:-3%;animation-delay:-2s}
+header{
+ position:relative;z-index:5;display:flex;justify-content:space-between;
+ align-items:center;gap:15px;padding:16px 5%;
+ background:#14071e55;border-bottom:1px solid #ffffff22;backdrop-filter:blur(10px)
+}
+.brand{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:900;letter-spacing:1px}
+.brand img{width:58px;height:58px;object-fit:contain;border-radius:8px}
+.brand small{display:block;color:var(--cyan);margin-top:5px;font-size:10px;letter-spacing:2px}
+nav{display:flex;align-items:center;gap:20px}
+nav a{color:white;text-decoration:none;font-size:12px;font-weight:bold}
+nav a:hover{color:var(--cyan)}
+main{
+ position:relative;z-index:3;flex:1;display:flex;justify-content:center;
+ align-items:center;text-align:center;padding:65px 18px 95px
+}
+.content{width:100%;max-width:900px;animation:appear 1s ease}
+.badge{
+ display:inline-block;padding:10px 16px;border:1px solid #ffffff66;
+ background:#1a0b2b66;border-radius:30px;font-size:11px;
+ letter-spacing:2px;margin-bottom:25px
+}
+h1{font-size:clamp(44px,9vw,100px);line-height:.98;font-weight:1000;letter-spacing:-3px}
+.gta{display:block}
+.vi{
+ display:block;margin-top:8px;font-size:1.3em;
+ background:linear-gradient(90deg,#ffa6d9,#ff4fa3,#ffbd77);
+ -webkit-background-clip:text;background-clip:text;color:transparent;
+ filter:drop-shadow(0 5px #3a0d3855)
+}
+.subtitle{max-width:570px;margin:24px auto;line-height:1.8;color:#fff0fa;font-size:16px}
+.countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:650px;margin:35px auto 0}
+.time-box{
+ padding:22px 8px;background:#190a2bd9;border:1px solid #ffffff44;
+ border-radius:12px;backdrop-filter:blur(12px);transition:.3s
+}
+.time-box:hover{transform:translateY(-6px);border-color:var(--cyan);box-shadow:0 0 20px #ff45b533}
+.time-box span{display:block;font-size:clamp(28px,5vw,52px);font-weight:900;font-variant-numeric:tabular-nums}
+.time-box small{display:block;margin-top:10px;color:var(--cyan);font-size:10px;letter-spacing:2px;text-transform:uppercase}
+.release{margin-top:20px;font-size:13px;letter-spacing:1px;color:#ffe0f0}
+.buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:30px}
+.btn{
+ display:inline-block;padding:15px 23px;border-radius:5px;text-decoration:none;
+ font-size:12px;font-weight:900;letter-spacing:1px;transition:.25s
+}
+.btn:hover{transform:translateY(-4px)}
+.primary{color:#210b2d;background:linear-gradient(90deg,#ff77b7,#ffb36b);box-shadow:0 7px 24px #ff4fa344}
+.secondary{color:white;border:1px solid #ffffff70;background:#180a2a88}
+section{padding:75px 6%;text-align:center;background:radial-gradient(ellipse at top,#28103c,#12091f 65%)}
+.label{color:var(--cyan);font-size:11px;letter-spacing:4px;font-weight:bold}
+h2{margin-top:12px;font-size:clamp(28px,5vw,48px);text-transform:uppercase}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1050px;margin:35px auto}
+.card{
+ padding:25px;text-align:left;border:1px solid #ffffff20;border-radius:14px;
+ background:linear-gradient(145deg,#ffffff0c,#ffffff03);transition:.25s
+}
+.card:hover{transform:translateY(-5px);border-color:#ff4fa388}
+.card .icon{font-size:28px}
+.card h3{margin:14px 0 9px}
+.card p{color:#c9bfd5;font-size:14px;line-height:1.7}
+.disclaimer{max-width:800px;margin:25px auto 0;color:#9589a5;font-size:12px;line-height:1.7}
+footer{padding:24px 5%;text-align:center;background:#0c0615;border-top:1px solid #ffffff14;color:#9f93ad;font-size:12px;line-height:1.8}
+footer strong{color:white}
 
-.bg{
-position:absolute;
-width:100%;
-height:100%;
-background:
-radial-gradient(circle at 20% 20%,#ff0080 0%,transparent 25%),
-radial-gradient(circle at 80% 30%,#8a2be2 0%,transparent 30%),
-radial-gradient(circle at 50% 80%,#00bfff 0%,transparent 35%),
-#050816;
-animation:pulse 8s infinite alternate;
-}
+@keyframes appear{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes glow{from{filter:brightness(.95)}to{filter:brightness(1.1)}}
+@keyframes gridmove{from{background-position:0 0}to{background-position:0 30px}}
+@keyframes sway{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
 
-@keyframes pulse{
-from{transform:scale(1);}
-to{transform:scale(1.1);}
+@media(max-width:650px){
+ header{padding:12px 4%}
+ .brand{font-size:10px;gap:7px}
+ .brand img{width:43px;height:43px}
+ .brand small{font-size:8px}
+ nav{gap:10px}
+ nav a{font-size:10px}
+ main{padding:50px 14px 80px}
+ .countdown{gap:6px}
+ .time-box{padding:17px 3px}
+ .time-box small{font-size:8px;letter-spacing:1px}
+ h1{letter-spacing:-1px}
+ .cards{grid-template-columns:1fr}
+ .palm{bottom:3%;opacity:.75}
 }
-
-.container{
-position:relative;
-z-index:10;
-text-align:center;
-padding:25px;
-width:90%;
-max-width:900px;
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(18px);
-border:1px solid rgba(255,255,255,0.15);
-border-radius:30px;
-box-shadow:0 0 40px rgba(255,0,255,.25);
-}
-
-.logo{
-font-size:4rem;
-font-weight:900;
-letter-spacing:4px;
-text-shadow:
-0 0 10px #ff4fd8,
-0 0 25px #ff4fd8,
-0 0 50px #ff4fd8;
-}
-
-.subtitle{
-margin-top:10px;
-font-size:1.2rem;
-color:#ddd;
-letter-spacing:3px;
-}
-
-.countdown{
-display:flex;
-justify-content:center;
-gap:20px;
-margin-top:50px;
-flex-wrap:wrap;
-}
-
-.box{
-min-width:140px;
-padding:20px;
-background:rgba(255,255,255,.08);
-border-radius:20px;
-box-shadow:0 0 20px rgba(255,255,255,.1);
-}
-
-.number{
-font-size:4rem;
-font-weight:bold;
-color:#fff;
-text-shadow:
-0 0 10px #c084fc,
-0 0 20px #c084fc,
-0 0 40px #c084fc;
-}
-
-.label{
-margin-top:10px;
-font-size:1rem;
-letter-spacing:2px;
-color:#ccc;
-}
-
-.footer{
-margin-top:40px;
-font-size:1.2rem;
-letter-spacing:3px;
-color:#fff;
-opacity:.9;
-}
-
-.live{
-margin-top:20px;
-font-size:1.3rem;
-font-weight:bold;
-color:#ff3b3b;
-animation:blink 1s infinite;
-}
-
-@keyframes blink{
-50%{
-opacity:.3;
-}
-}
-
-.particle{
-position:absolute;
-width:4px;
-height:4px;
-background:white;
-border-radius:50%;
-opacity:.7;
-animation:float linear infinite;
-}
-
-@keyframes float{
-from{
-transform:translateY(100vh);
-}
-to{
-transform:translateY(-100px);
-}
-}
-
-@media(max-width:768px){
-
-.logo{
-font-size:2.5rem;
-}
-
-.number{
-font-size:2.4rem;
-}
-
-.box{
-min-width:100px;
-}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}
 }
 </style>
 </head>
 
 <body>
+<div class="hero" id="home">
+ <div class="sun"></div>
+ <div class="grid"></div>
+ <div class="palm left" aria-hidden="true">🌴</div>
+ <div class="palm right" aria-hidden="true">🌴</div>
 
-<div class="bg"></div>
+ <header>
+  <a class="brand" href="#home">
+   <img src="logo.jpg" alt="Logo GTA Feed Italia">
+   <span>GTA FEED ITALIA<small>GTA VI COUNTDOWN</small></span>
+  </a>
+  <nav>
+   <a href="#home">HOME</a>
+   <a href="#community">COMMUNITY</a>
+   <a href="https://www.rockstargames.com/VI" target="_blank" rel="noopener">GTA VI ↗</a>
+  </nav>
+ </header>
 
-<div class="container">
+ <main>
+  <div class="content">
+   <div class="badge">🌴 IL COUNTDOWN È IN CORSO</div>
+   <h1><span class="gta">IL RITORNO A</span><span class="vi">VICE CITY</span></h1>
+   <p class="subtitle">
+    La prossima grande avventura è all'orizzonte.<br>
+    Preparati a tornare in strada con <strong>GTA Feed Italia</strong>.
+   </p>
 
-<div class="logo">GTA VI</div>
+   <div class="countdown">
+    <div class="time-box"><span id="days">---</span><small>Giorni</small></div>
+    <div class="time-box"><span id="hours">--</span><small>Ore</small></div>
+    <div class="time-box"><span id="minutes">--</span><small>Minuti</small></div>
+    <div class="time-box"><span id="seconds">--</span><small>Secondi</small></div>
+   </div>
 
-<div class="subtitle">
-COUNTDOWN UFFICIALE GTA FEED ITALIA
+   <p class="release" id="release">DATA IMPOSTATA: 19 NOVEMBRE 2026</p>
+
+   <div class="buttons">
+    <a class="btn primary" href="#community">SCOPRI LA COMMUNITY</a>
+    <a class="btn secondary" href="https://www.rockstargames.com/VI" target="_blank" rel="noopener">SITO UFFICIALE ↗</a>
+   </div>
+  </div>
+ </main>
 </div>
 
-<div class="countdown">
+<section id="community">
+ <div class="label">GTA FEED ITALIA</div>
+ <h2>La community italiana</h2>
+ <p class="subtitle">News, attesa e passione per il mondo di Grand Theft Auto.</p>
 
-<div class="box">
-<div id="days" class="number">0</div>
-<div class="label">GIORNI</div>
-</div>
+ <div class="cards">
+  <article class="card">
+   <div class="icon">🌴</div>
+   <h3>Verso Vice City</h3>
+   <p>Preparati a esplorare un nuovo mondo e a vivere la prossima avventura GTA.</p>
+  </article>
+  <article class="card">
+   <div class="icon">⏳</div>
+   <h3>Countdown live</h3>
+   <p>Il timer si aggiorna automaticamente ogni secondo sul tuo dispositivo.</p>
+  </article>
+  <article class="card">
+   <div class="icon">🇮🇹</div>
+   <h3>Community italiana</h3>
+   <p>Uno spazio fan-made dedicato a tutti gli appassionati italiani di GTA.</p>
+  </article>
+ </div>
 
-<div class="box">
-<div id="hours" class="number">0</div>
-<div class="label">ORE</div>
-</div>
+ <p class="disclaimer">
+  GTA Feed Italia è un progetto fan-made indipendente, non affiliato né sponsorizzato
+  da Rockstar Games. I marchi appartengono ai rispettivi proprietari.
+  La data del countdown potrebbe cambiare in seguito ad annunci ufficiali.
+ </p>
+</section>
 
-<div class="box">
-<div id="minutes" class="number">0</div>
-<div class="label">MINUTI</div>
-</div>
-
-<div class="box">
-<div id="seconds" class="number">0</div>
-<div class="label">SECONDI</div>
-</div>
-
-</div>
-
-<div class="footer">
-GRAND THEFT AUTO VI
-</div>
-
-<div class="live">
-🔴 LIVE 24/7
-  <div class="live">
-🔴 SEGUICI SU TIKTOK E TELEGRAM
-</div>
-
-</div>
+<footer>
+ <strong>GTA FEED ITALIA</strong> · Community italiana fan-made<br>
+ Realizzato per GitHub Pages
+</footer>
 
 <script>
+  // Countdown impostato al 19 novembre 2026, mezzanotte in Italia.
+  const releaseDate = new Date("2026-11-19T00:00:00+01:00").getTime();
 
-// DATA USCITA
-const targetDate = new Date("November 19, 2026 00:00:00").getTime();
+  function updateCountdown() {
+    const remaining = releaseDate - Date.now();
 
-function updateCountdown(){
+    if (remaining <= 0) {
+      document.getElementById("days").textContent = "00";
+      document.getElementById("hours").textContent = "00";
+      document.getElementById("minutes").textContent = "00";
+      document.getElementById("seconds").textContent = "00";
+      document.getElementById("release").textContent =
+        "È ARRIVATO IL 19 NOVEMBRE 2026!";
+      return;
+    }
 
-const now = new Date().getTime();
-const distance = targetDate - now;
+    const days = Math.floor(remaining / 86400000);
+    const hours = Math.floor((remaining % 86400000) / 3600000);
+    const minutes = Math.floor((remaining % 3600000) / 60000);
+    const seconds = Math.floor((remaining % 60000) / 1000);
 
-const days = Math.floor(distance/(1000*60*60*24));
-const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
-const seconds = Math.floor((distance%(1000*60))/1000);
+    document.getElementById("days").textContent = days;
+    document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+    document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+    document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+  }
 
-document.getElementById("days").innerText = days;
-document.getElementById("hours").innerText = hours;
-document.getElementById("minutes").innerText = minutes;
-document.getElementById("seconds").innerText = seconds;
-
-}
-
-setInterval(updateCountdown,1000);
-updateCountdown();
-
-// PARTICELLE
-
-for(let i=0;i<70;i++){
-
-let p=document.createElement("div");
-p.classList.add("particle");
-
-p.style.left=Math.random()*100+"%";
-p.style.animationDuration=(5+Math.random()*15)+"s";
-p.style.opacity=Math.random();
-
-document.body.appendChild(p);
-
-}
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
 </script>
-
 </body>
 </html>
