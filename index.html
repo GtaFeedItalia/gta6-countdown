@@ -105,6 +105,7 @@
     }
 
     .palm.left { left: -3%; }
+
     .palm.right {
       right: -3%;
       animation-delay: -2s;
@@ -177,7 +178,7 @@
       display: grid;
       place-items: center;
       text-align: center;
-      padding: 65px 20px 105px;
+      padding: 50px 20px 105px;
     }
 
     .content {
@@ -243,12 +244,46 @@
       font-size: clamp(14px,2vw,17px);
     }
 
+    /* Pulsanti Telegram */
+    .telegram-top,
+    .telegram-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 22px;
+      border: 1px solid #55c8ff;
+      border-radius: 7px;
+      background: linear-gradient(135deg,#229ed9,#147db3);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      box-shadow: 0 7px 24px #229ed944;
+      transition: transform .2s,box-shadow .2s;
+    }
+
+    .telegram-top {
+      margin: 22px auto 0;
+    }
+
+    .telegram-button {
+      margin-top: 18px;
+    }
+
+    .telegram-top:hover,
+    .telegram-button:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px #229ed966;
+    }
+
     .countdown {
       display: grid;
       grid-template-columns: repeat(4,minmax(0,1fr));
       gap: 12px;
       max-width: 650px;
-      margin: 36px auto 0;
+      margin: 30px auto 0;
     }
 
     .time-box {
@@ -415,31 +450,6 @@
 
     footer strong { color: #fff; }
 
-    /* UNICO ELEMENTO AGGIUNTO: pulsante Telegram in fondo */
-    .telegram-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 18px;
-      padding: 14px 22px;
-      border: 1px solid #55c8ff;
-      border-radius: 7px;
-      background: linear-gradient(135deg,#229ed9,#147db3);
-      color: #fff;
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      box-shadow: 0 7px 24px #229ed944;
-      transition: transform .2s,box-shadow .2s;
-    }
-
-    .telegram-button:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 28px #229ed966;
-    }
-
     @keyframes rise {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -475,14 +485,18 @@
       .brand small { font-size: 8px; letter-spacing: 2px; }
       nav { gap: 12px; font-size: 11px; }
       nav .hide-mobile { display: none; }
-      main { padding: 55px 16px 85px; }
+      main { padding: 45px 16px 85px; }
       .palm { bottom: 4%; opacity: .75; }
-      .countdown { gap: 7px; margin-top: 28px; }
+      .countdown { gap: 7px; margin-top: 25px; }
       .time-box { padding: 17px 3px 13px; }
       .time-box small { font-size: 8px; letter-spacing: 1px; }
       h1 { letter-spacing: -1.5px; }
       .cards { grid-template-columns: 1fr; }
       .info { padding: 60px 6%; }
+      .telegram-top {
+        width: min(100%,340px);
+        padding: 14px 12px;
+      }
     }
 
     @media(max-width:380px) {
@@ -492,6 +506,10 @@
       .nav-cta { padding: 9px; }
       .countdown { gap: 5px; }
       .time-box span { font-size: 27px; }
+      .telegram-top {
+        font-size: 10px;
+        letter-spacing: .6px;
+      }
     }
 
     @media(prefers-reduced-motion:reduce) {
@@ -550,6 +568,15 @@
           Preparati a tornare in strada con la community di
           <strong>GTA Feed Italia</strong>.
         </p>
+
+        <!-- PULSANTE TELEGRAM IN ALTO -->
+        <a class="telegram-top"
+           href="https://t.me/gta6gameplayit"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Unisciti al canale Telegram GTA 6 Gameplay IT">
+          ✈️ UNISCITI AL CANALE TELEGRAM
+        </a>
 
         <div class="countdown" aria-label="Countdown per GTA VI">
           <div class="time-box">
@@ -644,7 +671,7 @@
     <strong>GTA FEED ITALIA</strong> · Fan community italiana<br>
     Progetto non ufficiale · Realizzato per GitHub Pages<br>
 
-    <!-- NUOVO TASTO TELEGRAM IN FONDO ALLA PAGINA -->
+    <!-- PULSANTE TELEGRAM NEL FOOTER -->
     <a class="telegram-button"
        href="https://t.me/gta6gameplayit"
        target="_blank"
@@ -656,7 +683,7 @@
 
   <script>
     // Data impostata: 19 novembre 2026 alle ore 00:00 in Italia.
-    // Modifica questa riga se viene annunciata una data diversa.
+    // Aggiorna questa data se viene annunciata una data ufficiale diversa.
     const releaseDate =
       new Date("2026-11-19T00:00:00+01:00").getTime();
 
