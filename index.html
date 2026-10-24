@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -244,24 +243,32 @@
       font-size: clamp(14px,2vw,17px);
     }
 
-    /* Pulsanti Telegram */
+    /* PULSANTI SOCIAL */
     .telegram-top,
-    .telegram-button {
+    .telegram-button,
+    .social-button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
       padding: 14px 22px;
-      border: 1px solid #55c8ff;
+      border: 1px solid transparent;
       border-radius: 7px;
-      background: linear-gradient(135deg,#229ed9,#147db3);
       color: #fff;
       font-size: 12px;
       font-weight: 900;
       letter-spacing: 1px;
       text-transform: uppercase;
+      box-shadow: 0 7px 24px #00000030;
+      transition: transform .2s,box-shadow .2s,filter .2s;
+      cursor: pointer;
+    }
+
+    .telegram-top,
+    .telegram-button {
+      border-color: #55c8ff;
+      background: linear-gradient(135deg,#229ed9,#147db3);
       box-shadow: 0 7px 24px #229ed944;
-      transition: transform .2s,box-shadow .2s;
     }
 
     .telegram-top {
@@ -272,10 +279,42 @@
       margin-top: 18px;
     }
 
+    .social-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      max-width: 760px;
+      margin: 14px auto 0;
+    }
+
+    .social-button {
+      min-height: 46px;
+      padding: 13px 17px;
+    }
+
+    .telegram-backup {
+      background: linear-gradient(135deg,#187db7,#145b91);
+      border-color: #5db8ed;
+    }
+
+    .tiktok-button {
+      background: linear-gradient(135deg,#fe2c55,#b51b87);
+      border-color: #ff7aa6;
+    }
+
+    .group-button {
+      background: linear-gradient(135deg,#7541a5,#49216f);
+      border-color: #bd8bea;
+    }
+
     .telegram-top:hover,
-    .telegram-button:hover {
+    .telegram-button:hover,
+    .social-button:hover {
       transform: translateY(-4px);
-      box-shadow: 0 10px 28px #229ed966;
+      box-shadow: 0 10px 28px #00000055;
+      filter: brightness(1.08);
     }
 
     .countdown {
@@ -493,9 +532,22 @@
       h1 { letter-spacing: -1.5px; }
       .cards { grid-template-columns: 1fr; }
       .info { padding: 60px 6%; }
+
       .telegram-top {
         width: min(100%,340px);
         padding: 14px 12px;
+      }
+
+      .social-links {
+        width: 100%;
+        max-width: 340px;
+        gap: 10px;
+      }
+
+      .social-button {
+        width: 100%;
+        padding: 14px 10px;
+        font-size: 11px;
       }
     }
 
@@ -506,6 +558,7 @@
       .nav-cta { padding: 9px; }
       .countdown { gap: 5px; }
       .time-box span { font-size: 27px; }
+
       .telegram-top {
         font-size: 10px;
         letter-spacing: .6px;
@@ -569,14 +622,40 @@
           <strong>GTA Feed Italia</strong>.
         </p>
 
-        <!-- PULSANTE TELEGRAM IN ALTO -->
+        <!-- PULSANTI SOCIAL IN ALTO -->
         <a class="telegram-top"
            href="https://t.me/gta6gameplayit"
            target="_blank"
            rel="noopener noreferrer"
-           aria-label="Unisciti al canale Telegram GTA 6 Gameplay IT">
-          ✈️ UNISCITI AL CANALE TELEGRAM
+           aria-label="Unisciti al canale Telegram principale GTA Feed Italia">
+          ✈️ CANALE TELEGRAM PRINCIPALE
         </a>
+
+        <div class="social-links" aria-label="Tutti i canali social GTA Feed Italia">
+          <a class="social-button telegram-backup"
+             href="https://t.me/gtafeeditaliabackup"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Apri il canale Telegram di backup">
+            🛡️ TELEGRAM BACKUP
+          </a>
+
+          <a class="social-button tiktok-button"
+             href="https://www.tiktok.com/@gtafeeditalia"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Segui GTA Feed Italia su TikTok">
+            🎵 SEGUICI SU TIKTOK
+          </a>
+
+          <a class="social-button group-button"
+             href="https://t.me/+XYR65CJtLixmZjk0"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Entra nel gruppo chat Telegram GTA Feed Italia">
+            💬 GRUPPO CHAT TELEGRAM
+          </a>
+        </div>
 
         <div class="countdown" aria-label="Countdown per GTA VI">
           <div class="time-box">
@@ -671,14 +750,40 @@
     <strong>GTA FEED ITALIA</strong> · Fan community italiana<br>
     Progetto non ufficiale · Realizzato per GitHub Pages<br>
 
-    <!-- PULSANTE TELEGRAM NEL FOOTER -->
+    <!-- PULSANTI SOCIAL NEL FOOTER -->
     <a class="telegram-button"
        href="https://t.me/gta6gameplayit"
        target="_blank"
        rel="noopener noreferrer"
-       aria-label="Unisciti al canale Telegram GTA 6 Gameplay IT">
-      ✈️ UNISCITI AL CANALE TELEGRAM
+       aria-label="Unisciti al canale Telegram principale GTA Feed Italia">
+      ✈️ CANALE TELEGRAM PRINCIPALE
     </a>
+
+    <div class="social-links" aria-label="Altri canali social GTA Feed Italia">
+      <a class="social-button telegram-backup"
+         href="https://t.me/gtafeeditaliabackup"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="Apri il canale Telegram di backup">
+        🛡️ TELEGRAM BACKUP
+      </a>
+
+      <a class="social-button tiktok-button"
+         href="https://www.tiktok.com/@gtafeeditalia"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="Segui GTA Feed Italia su TikTok">
+        🎵 SEGUICI SU TIKTOK
+      </a>
+
+      <a class="social-button group-button"
+         href="https://t.me/+XYR65CJtLixmZjk0"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="Entra nel gruppo chat Telegram GTA Feed Italia">
+        💬 GRUPPO CHAT TELEGRAM
+      </a>
+    </div>
   </footer>
 
   <script>
